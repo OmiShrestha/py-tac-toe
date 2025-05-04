@@ -1,6 +1,6 @@
 # py-Tac-Toe Game
 
-This is a graphical Tic-Tac-Toe game implemented in Python using the `tkinter` library. It offers an interactive and fun way to play the classic game, either against an AI or with another player.
+This is a graphical Tic-Tac-Toe game implemented in Python using the `tkinter` library. It offers an interactive way to play the game, either against an AI. 
 
 ## Features
 
