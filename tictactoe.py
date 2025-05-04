@@ -1,4 +1,4 @@
-# Import necessary modules for GUI and message boxes
+# Import files
 import tkinter as tk
 from tkinter import messagebox
 
@@ -20,7 +20,7 @@ def check_winner(board, player):
         return True
     return False
 
-# Function to check if the board is full (tie condition)
+# Function to check if the board is full (TIE)
 def is_full(board):
     return all(cell in ['X', 'O'] for row in board for cell in row)
 
