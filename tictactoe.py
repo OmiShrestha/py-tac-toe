@@ -1,4 +1,4 @@
-# Import files
+# Imports
 import tkinter as tk
 from tkinter import messagebox
 
