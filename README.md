@@ -1,4 +1,4 @@
-# py-Tac-Toe Game
+# Tic-Tac-Toe Game
 
 This is a simple graphical Tic-Tac-Toe game implemented in Python using the `tkinter` library. Players can click on the grid to make their moves, and the game will automatically check for a winner or a tie.
 
@@ -28,3 +28,6 @@ This is a simple graphical Tic-Tac-Toe game implemented in Python using the `tki
 
 ## Resetting the Game
 Click the "Reset" button to clear the board and start a new game.
+
+## License
+This project is open-source and free to use.

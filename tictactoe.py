@@ -24,7 +24,41 @@ def check_winner(board, player):
 def is_full(board):
     return all(cell in ['X', 'O'] for row in board for cell in row)
 
-# Function to handle a player's move when a button is clicked
+# Function for the AI to make a move
+def ai_move():
+    global current_player, board, buttons, status_label
+
+    # Simple AI logic: prioritize winning, blocking, or random moves
+    for row in range(3):
+        for col in range(3):
+            if board[row][col] == ' ':  # Check empty cell
+                # Simulate AI move
+                board[row][col] = 'O'
+                if check_winner(board, 'O'):
+                    buttons[row][col].config(text='O', state="disabled", disabledforeground="red")
+                    return
+                board[row][col] = ' '  # Undo move
+
+    for row in range(3):
+        for col in range(3):
+            if board[row][col] == ' ':  # Check empty cell
+                # Simulate blocking move
+                board[row][col] = 'X'
+                if check_winner(board, 'X'):
+                    board[row][col] = 'O'
+                    buttons[row][col].config(text='O', state="disabled", disabledforeground="red")
+                    return
+                board[row][col] = ' '  # Undo move
+
+    # If no winning or blocking move, pick the first available cell
+    for row in range(3):
+        for col in range(3):
+            if board[row][col] == ' ':
+                board[row][col] = 'O'
+                buttons[row][col].config(text='O', state="disabled", disabledforeground="red")
+                return
+
+# Modify the on_click function to include AI's turn
 def on_click(row, col):
     global current_player, board, buttons, status_label, score_x, score_o, score_label
 
@@ -51,6 +85,21 @@ def on_click(row, col):
     else:
         current_player = 'O' if current_player == 'X' else 'X'
         status_label.config(text=f"Player {current_player}'s Turn")
+
+        # If it's AI's turn, make the AI move
+        if current_player == 'O':
+            ai_move()
+            if check_winner(board, 'O'):
+                score_o += 1
+                score_label.config(text=f"> X: {score_x} | O: {score_o}")
+                messagebox.showinfo("Game Over", "Player O wins!")
+                reset_game()
+            elif is_full(board):
+                messagebox.showinfo("Game Over", "The game is a tie!")
+                reset_game()
+            else:
+                current_player = 'X'
+                status_label.config(text=f"Player {current_player}'s Turn")
 
 # Function to reset the game board and start a new game
 def reset_game():
